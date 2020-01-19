@@ -1,14 +1,27 @@
 import moment from 'moment'
-import React, { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { AsyncStorage, Button, StyleSheet, Text, View } from 'react-native'
 import DatePickerModal from './DatePickerModal'
 
 export default function Main() {
   const [pickerVisible, setPickerVisible] = useState(false)
-  const [retirementDate, setRetirementDate] = useState(moment())
+  const [date, setDate] = useState<Date>()
+
+  useEffect(() => {
+    AsyncStorage.getItem('date').then(data => {
+      if (data) setDate(new Date(data))
+    })
+  }, [])
+
+  // TODO store date in Context or something so user doesn't have to refresh after changing
 
   return (
     <View style={styles.container}>
+      <Text>
+        Days until retirement:{' '}
+        {Number(moment(date).diff(moment(), 'days')).toLocaleString()}
+      </Text>
+      <Text>Retirement date: {moment(date).format('LL')}</Text>
       <Button title='Change date...' onPress={() => setPickerVisible(true)} />
       <DatePickerModal
         visible={pickerVisible}
