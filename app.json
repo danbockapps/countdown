@@ -5,11 +5,9 @@
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "ios"
     ],
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +22,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIUserInterfaceStyle": "Light"
+      },
+      "bundleIdentifier": "net.danbock.countdown"
     }
   }
 }
