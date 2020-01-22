@@ -1,6 +1,12 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { AsyncStorage, StyleSheet, Text, View } from 'react-native'
+import {
+  AsyncStorage,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native'
 import { Button } from './Button'
 import { DateContext } from './dateContext'
 import DatePickerModal from './DatePickerModal'
@@ -26,7 +32,11 @@ export default function Main() {
 
   return (
     <DateContext.Provider value={{ date, setDate }}>
-      <View style={styles.container}>
+      <ImageBackground
+        source={require('../assets/annie-spratt5.png')}
+        style={styles.container}
+        resizeMode='stretch'
+      >
         <View style={styles.topHalf}>
           <Text style={styles.daysUntil}>Days until retirement:</Text>
           <Text style={styles.bigNumber}>
@@ -50,7 +60,7 @@ export default function Main() {
           visible={pickerVisible}
           close={() => setPickerVisible(false)}
         />
-      </View>
+      </ImageBackground>
     </DateContext.Provider>
   )
 }
