@@ -11,9 +11,16 @@ export default function Main() {
   const [date, setDate] = useState<Date>()
 
   useEffect(() => {
+    // Uncomment this to test as a new user.
+    // Someday expo will have a better way to clear stored data.
+    // AsyncStorage.clear()
+
     AsyncStorage.getItem('date').then(data => {
       if (data) setDate(new Date(data))
-      else setDate(new Date())
+      else {
+        setDate(new Date())
+        setPickerVisible(true)
+      }
     })
   }, [])
 
